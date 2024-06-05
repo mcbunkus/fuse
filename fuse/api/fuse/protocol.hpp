@@ -11,3 +11,6 @@ public:
 };
 
 } // namespace fuse
+
+// Handle for loading the IProtocol from an implementation
+extern "C" fuse::IProtocol *GetProtocol();

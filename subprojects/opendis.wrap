@@ -1,0 +1,3 @@
+[wrap-git]
+url = git@github.com:open-dis/open-dis-cpp.git
+revision = v1.0.1
