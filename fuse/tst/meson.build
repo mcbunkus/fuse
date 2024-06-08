@@ -2,7 +2,8 @@
 
 # put test files here
 tests = [
-  'channel.cpp'
+  'channel.cpp',
+  'threadpool.cpp'
 ]
 
 foreach _test : tests

@@ -19,7 +19,7 @@ fuse::Result<int> DisProtocol::Send(const fuse::IMessage &msg)
 
     std::string data = buffer.str();
 
-    int nsent = 0;
+    uint32_t nsent = 0;
     try
     {
         nsent = m_sock->sendTo(data.data(), data.size(), *m_recvdFrom);
@@ -37,7 +37,13 @@ fuse::Result<int> DisProtocol::Send(const fuse::IMessage &msg)
                          std::to_string(nsent) + " bytes");
     }
 
-    return fuse::Ok(nsent);
+    return fuse::Ok((int)nsent);
+}
+
+// TODO: actually implement this
+fuse::Result<int> DisProtocol::Receive(fuse::IMessage &msg)
+{
+    return fuse::Ok(42);
 }
 
 fuse::Result<> DisProtocol::configure(const fuse::IConfiguration &config)

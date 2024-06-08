@@ -100,46 +100,14 @@ template <typename T> class Receiver
 };
 
 /**
- *
  * USE THIS
  *
  * Channel returns a paired Sender and Receiver that threads can use to
  * communicate with one another. This is similar conceptually to a channel in
- * Golang, but I liked Rust's approach because it makes a clearer distinction
+ * Golang, but I like Rust's approach because it makes a clearer distinction
  * between who's sending and who's receiving.
  *
- * Example:
- *
- * int main()
- * {
- *     auto [sender, receiver] = channel<int>();
- *
- *     std::thread producer(
- *         [&sender]()
- *         {
- *             for (int i = 0; i < 5; ++i)
- *             {
- *                 sender.send(i);
- *                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
- *             }
- *             sender.close();
- *         });
- *
- *     std::thread consumer(
- *         [&receiver]()
- *         {
- *             while (auto value = receiver.receive())
- *             {
- *                 std::cout << "Received: " << *value << std::endl;
- *             }
- *             std::cout << "Receiver closed" << std::endl;
- *         });
- *
- *     producer.join();
- *     consumer.join();
- *
- *     return 0;
- * }
+ * See fuse/tst/channel.cpp for an example on how to use Channel
  */
 template <typename T> std::pair<Sender<T>, Receiver<T>> Channel()
 {
