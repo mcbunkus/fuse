@@ -14,3 +14,5 @@ src = files(
 
 fuse_lib = library('fuse', src, include_directories: include, dependencies: deps)
 fuse_dep = declare_dependency(link_with: fuse_lib, include_directories: include)
+
+subdir('tst')
