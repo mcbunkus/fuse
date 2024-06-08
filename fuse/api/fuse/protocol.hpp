@@ -8,6 +8,8 @@ class IProtocol {
 public:
   virtual int Send(const IMessage &) = 0;
   virtual int Receive(IMessage &) = 0;
+
+  virtual ~IProtocol() = default;
 };
 
 } // namespace fuse

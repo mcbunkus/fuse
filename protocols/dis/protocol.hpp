@@ -8,6 +8,8 @@ class DisProtocol : public fuse::IProtocol {
 public:
   int Send(const fuse::IMessage &msg) override;
   int Receive(fuse::IMessage &msg) override;
+
+  ~DisProtocol() = default;
 };
 
 extern "C" fuse::IProtocol *GetProtocol();

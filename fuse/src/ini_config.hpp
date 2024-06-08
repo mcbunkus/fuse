@@ -1,5 +1,7 @@
+#include "Poco/AutoPtr.h"
+#include "Poco/Util/IniFileConfiguration.h"
 #include "fuse/configuration.h"
-#include <Poco/Util/IniFileConfiguration.h>
+#include <memory>
 
 namespace fuse {
 class IniConfig : public Configuration {

@@ -5,6 +5,8 @@ poco = cmake.subproject('poco')
 
 deps = [
   opendis.dependency('OpenDIS6'),
+  poco.dependency('Util'),
+  poco.dependency('Foundation'),
   poco.dependency('Net'),
   fuse_dep
 ]
