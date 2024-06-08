@@ -1,15 +1,19 @@
 #pragma once
 
+#include "fuse/configuration.h"
 #include "fuse/message.hpp"
+#include "fuse/result.hpp"
 
-namespace fuse {
+namespace fuse
+{
 
-class IProtocol {
-public:
-  virtual int Send(const IMessage &) = 0;
-  virtual int Receive(IMessage &) = 0;
+class IProtocol : public IConfigurable
+{
+  public:
+    virtual Result<int> Send(const IMessage &) = 0;
+    virtual Result<int> Receive(IMessage &) = 0;
 
-  virtual ~IProtocol() = default;
+    virtual ~IProtocol() = default;
 };
 
 } // namespace fuse
