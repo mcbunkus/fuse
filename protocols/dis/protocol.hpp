@@ -1,15 +1,24 @@
+#include <memory>
+#include <optional>
+
 #include "Poco/Net/DatagramSocket.h"
 #include "fuse/protocol.hpp"
 
-class DisProtocol : public fuse::IProtocol {
+class DisProtocol : public fuse::IProtocol
+{
 
-  Poco::Net::DatagramSocket m_sock;
+    std::unique_ptr<Poco::Net::DatagramSocket> m_sock;
+    std::optional<Poco::Net::SocketAddress> m_recvdFrom;
 
-public:
-  int Send(const fuse::IMessage &msg) override;
-  int Receive(fuse::IMessage &msg) override;
+  public:
+    DisProtocol() = default;
 
-  ~DisProtocol() = default;
+    fuse::Result<int> Send(const fuse::IMessage &msg) override;
+    fuse::Result<int> Receive(fuse::IMessage &msg) override;
+
+    fuse::Result<> configure(const fuse::IConfiguration &config) override;
+
+    ~DisProtocol() = default;
 };
 
 extern "C" fuse::IProtocol *GetProtocol();

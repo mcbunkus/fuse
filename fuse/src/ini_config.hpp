@@ -1,19 +1,20 @@
 #include "Poco/AutoPtr.h"
 #include "Poco/Util/IniFileConfiguration.h"
 #include "fuse/configuration.h"
-#include <memory>
 
-namespace fuse {
-class IniConfig : public Configuration {
+namespace fuse
+{
+class IniConfig : public IConfiguration
+{
 
-  Poco::AutoPtr<Poco::Util::IniFileConfiguration> m_iniFile;
+    Poco::AutoPtr<Poco::Util::IniFileConfiguration> m_iniFile;
 
-public:
-  IniConfig(const std::string &filepath);
+  public:
+    IniConfig(const std::string &filepath);
 
-  std::string Get(const std::string &key) override;
-  void Set(const std::string &key, const std::string &value) override;
+    Result<std::string> Get(const std::string &key) const override;
+    Result<> Set(const std::string &key, const std::string &value) override;
 
-  ~IniConfig() = default;
+    ~IniConfig() = default;
 };
 } // namespace fuse

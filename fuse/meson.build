@@ -3,6 +3,7 @@ poco = cmake.subproject('poco')
 
 deps = [
   poco.dependency('Util'),
+  poco.dependency('Foundation'),
 ]
 
 include = include_directories('api')
