@@ -1,14 +1,12 @@
 #include <memory>
 #include <optional>
 
-#include "Poco/Net/DatagramSocket.h"
 #include "fuse/protocol.hpp"
 
 class DisProtocol : public fuse::IProtocol
 {
 
-    std::unique_ptr<Poco::Net::DatagramSocket> m_sock;
-    std::optional<Poco::Net::SocketAddress> m_recvdFrom;
+    int m_sockfd;
 
   public:
     DisProtocol() = default;
@@ -16,7 +14,8 @@ class DisProtocol : public fuse::IProtocol
     fuse::Result<int> Send(const fuse::IMessage &msg) override;
     fuse::Result<int> Receive(fuse::IMessage &msg) override;
 
-    fuse::Result<> configure(const fuse::IConfiguration &config) override;
+    fuse::Result<>
+    configure(const fuse::configuration::IConfiguration &config) override;
 
     ~DisProtocol() = default;
 };

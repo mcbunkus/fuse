@@ -1,4 +1,5 @@
 #pragma once
+#include <ostream>
 #include <stdexcept>
 #include <string>
 #include <utility> // For std::forward
@@ -19,6 +20,12 @@ class Err
     void operator+=(const std::string &desc) { m_desc = desc + ": " + m_desc; }
 
     std::string description() const { return m_desc; }
+
+    friend std::ostream &operator<<(std::ostream &os, const Err &e)
+    {
+        os << e.m_desc;
+        return os;
+    }
 };
 
 // std::monostate is how you would represent "void" in a std::variant

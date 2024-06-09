@@ -1,13 +1,13 @@
 #pragma once
 
-#include "fuse/configuration.h"
+#include "fuse/configuration/configuration.hpp"
 #include "fuse/message.hpp"
 #include "fuse/result.hpp"
 
 namespace fuse
 {
 
-class IProtocol : public IConfigurable
+class IProtocol : public configuration::IConfigurable
 {
   public:
     virtual Result<int> Send(const IMessage &) = 0;
